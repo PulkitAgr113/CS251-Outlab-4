@@ -1,0 +1,38 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <img src = {{ avatar_url }} class="rounded-circle" alt="Hi there!">
+      <h4 class="name_user">{{ full_name }} (@{{ url_username }})</h1>
+      <p><i>{{ follow }} followers</i></p>
+      <i>Profile last updated: {{ time }}</i>
+      <div class="vert_space_1"></div>
+      {% if user.username == url_username %}
+        <center><a href = "/update" class="btn btn-secondary btn-lg btn-block active" role="button" aria-pressed="true">Update Now</a></center>
+        <div class="vert_space_1"></div>
+      {% endif %}
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-7">
+    <div class="container">
+    {% for repo in repos %}
+      <div class="d-flex flex-column">
+        <div class="d-flex repo_header">
+          <div class="p-2 flex-grow-1 bd-highlight">{{ repo.name }}</div>
+          <div class="p-2 bd-highlight star">☆ {{ repo.stars }}</div>
+        </div>
+        <div class="p-2 bd-highlight">{{ repo.description }}</div>
+      </div>
+    {% endfor %}
+    </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

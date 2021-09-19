@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Signup with GitHub Profiles</h1>
+  <h2>{{ error_msg }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Signup</button>
+  </form>
+</div>
+{% endblock %}
